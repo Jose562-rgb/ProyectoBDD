@@ -1,0 +1,142 @@
+//Librerias para conexion a SQL
+using System.Data.SqlClient;
+using System.Data;
+using System.Runtime.InteropServices;
+
+namespace ProyectoBBD_APPiShop
+{
+    public partial class Form1 : Form
+    {
+        SqlConnection conn = new SqlConnection("Data Source=DESKTOP-9JVCM86\\SQLEXPRESS;Initial Catalog=ProyectoTigo;Integrated Security=True");
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            btnMaximizar.Visible = false;
+            btnRestaurar.Visible = true;
+
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            btnRestaurar.Visible = false;
+            btnMaximizar.Visible = true;
+        }
+
+
+
+        private void SubMenuVentas_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        /* private void btnVentas_Click(object sender, EventArgs e)
+         {
+             SubMenuVentas.Visible = true;
+             cargarDataVentas();
+             //dsjdh
+         }*/
+
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            cargarDataProductos();
+        }
+
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cargarDataProductos()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("select * from Productos", conn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            this.dataGridView1.DataSource = dt;
+
+        }
+
+        private void cargarDataClientes()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("select * from Clientes", conn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            this.dataGridView1.DataSource = dt;
+
+        }
+
+        /* private void cargarDataVentas()
+         {
+             SqlDataAdapter da = new SqlDataAdapter("select * from Ventas", conn);
+             DataTable dt = new DataTable();
+             da.Fill(dt);
+             this.dataGridView2.DataSource = dt;
+             xcsssxcc
+         }
+         xc*/
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            SubmenuClientes.Visible = true;
+            //cargarDataClientes();
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuVertical_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SubmenuClientes.Visible = false;
+        }
+
+        private void ConsultarClientes_Click(object sender, EventArgs e)
+        {
+            SubmenuClientes.Visible = false;
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+    }
+
+
+}
